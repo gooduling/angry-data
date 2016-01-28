@@ -1,0 +1,54 @@
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+}
+.circlegroup circle {
+	position: absolute;
+	z-index: 5
+}
+
+.circlegroup:hover circle {
+	cursor:pointer;
+	z-index: 40;
+	fill: #0094FF !important;
+}
+.circlegroup .textlabel {
+	fill:#555 ;
+	position: absolute;
+	z-index: 5
+}
+.circlegroup:hover .textlabel {
+
+	cursor:pointer;
+	position: absolute;
+	z-index: 40;
+	fill:black;
+}
+body {
+	background: grey;
+}
+.wrapper {
+	width: 80%;
+	margin: 0 auto;
+	border-radius: 5px;
+	background: white;
+	padding: 20px;
+	text-align: center;
+}
+.chart {
+	display: inline-block;
+	padding: 20px;
+	border-radius: 5px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+}
+.ch-button {
+	margin: 30px;
+	padding: 15px;
+	font-size: 20px;
+	color: white;
+	background: crimson;
+	font-weight: 600;
+	border-radius: 5px;
+}
