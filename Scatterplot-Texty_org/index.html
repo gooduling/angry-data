@@ -415,6 +415,7 @@ d3.csv("vis_data2.csv", function(error, csv_data) {
 });
 
 function simple_tooltip(d){
+    console.log(d);
     var last_point = d.data[d.data.length - 1];
 
     var x_left = x(d.base_val), x_right = x_left +  x_group(last_point.date);

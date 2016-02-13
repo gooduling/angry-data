@@ -1,7 +1,18 @@
-var  margin = {top: 20, right: 20, bottom: 30, left: 30},
+var margin = {top: 20, right: 20, bottom: 30, left: 30},
     svgWidth = 800,
     svgHeight = 500,
-    generateRandomData = function() {
+    width = svgWidth - margin.left - margin.right,
+    height = svgHeight - margin.top - margin.bottom,
+
+    data = generateRandomData(),
+    domain = {
+        x: [d3.min(data, function(d) { return d.age}), d3.max(data, function(d) { return d.age})],
+        y: [d3.min(data, function(d) { return d.weight}), d3.max(data, function(d) { return d.weight})],
+        diameter: [d3.min(data, function(d) { return d.diameter}), d3.max(data, function(d) { return d.diameter})],
+        color: [d3.min(data, function(d) { return d.color}), d3.max(data, function(d) { return d.color})]
+    };
+
+function generateRandomData() {
     "use strict";
     let arr = [],
         randomItem = function() {
@@ -18,15 +29,6 @@ var  margin = {top: 20, right: 20, bottom: 30, left: 30},
     //q++;
     return arr;
 };
-    data = generateRandomData(),
-    domain = {
-        x: [d3.min(data, function(d) { return d.age}), d3.max(data, function(d) { return d.age})],
-        y: [d3.min(data, function(d) { return d.weight}), d3.max(data, function(d) { return d.weight})],
-        diameter: [d3.min(data, function(d) { return d.diameter}), d3.max(data, function(d) { return d.diameter})],
-        color: [d3.min(data, function(d) { return d.color}), d3.max(data, function(d) { return d.color})]
-    },
-    width = svgWidth - margin.left - margin.right,
-    height = svgHeight - margin.top - margin.bottom;
 
 //Calculate SCALES
 var x = d3.scale.linear()
@@ -66,7 +68,7 @@ svg.append("g")
       .attr("transform", "translate(0," + (svgHeight - margin.bottom - margin.top) + ")")
 
       .call(xAxis)
-      .append("text")      
+      .append("text")
       .attr("x", width)
       .attr("dy", "-10px")
       .style("text-anchor", "end")
