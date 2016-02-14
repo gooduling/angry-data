@@ -1,6 +1,6 @@
-var margin = {top: 100, right: 20, bottom: 100, left: 10},
-    svgWidth = 1500,
-    svgHeight = 1000,
+var margin = {top: 70, right: 20, bottom: 20, left: 10},
+    svgWidth = 1000,
+    svgHeight = 700,
     width = svgWidth - margin.left - margin.right,
     height = svgHeight - margin.top - margin.bottom,
     data = {};
@@ -24,30 +24,56 @@ d3.csv("budget16-top10.csv", function (error, csv_data) {
         deficite = parseInt(outcomeSum - incomeSum);
     console.log(data);
 //Calculate SCALES
-var scaleY = d3.scale.linear()
-    .domain([0, d3.max([incomeSum, outcomeSum])])
-    .range([height, 0])
-    .clamp(true);
-var scaleR = d3.scale.linear()
-    .domain(d3.extent(totalIncome.y16.concat(totalOutcome.y16)))
-    .rangeRound([0, 8])
-    .clamp(true);
+    var scaleY = d3.scale.linear()
+        .domain([0, d3.max([incomeSum, outcomeSum])])
+        .range([height, 0])
+        .clamp(true);
+    var scaleR = d3.scale.linear()
+        .domain(d3.extent(totalIncome.y16.concat(totalOutcome.y16)))
+        .rangeRound([0, 8])
+        .clamp(true);
 
 //Prepare AXES functions
-var yAxis = d3.svg.axis()
-    .scale(scaleY)
-    .orient("left")
-    .ticks(10);
+    var yAxis = d3.svg.axis()
+        .scale(scaleY)
+        .orient("left")
+        .ticks(10);
 
     var xTranslate = width/ 2,
-        wCounter = 0,
-        intCounter = 1;
+        wCounter = 0;
+
+    //To calculate transition of every nex element
     function incrementCouner (d, i){
         if (!i) wCounter = 0;
         var c = wCounter,
             dif = d.type == "income" ? height - scaleY(deficite) : 0;
         wCounter = wCounter + parseFloat(d.total16);
         return "translate( 0," + (height - scaleY(c) + dif) + ")";
+    }
+    //Hack to limit the width of the text labels
+    function wrap(text, width) {
+        text.each(function() {
+            var text = d3.select(this),
+                words = text.text().split(/\s+/).reverse(),
+                word,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 16, // ems
+                y = text.attr("y"),
+                dy = parseFloat(text.attr("dy")),
+                tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    tspan.text(line.join(" "));
+                    line = [word];
+                    var dyValue = lineNumber ===1 ? 0 : lineHeight;
+                    tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", dyValue  + "px").text(word);
+                }
+            }
+        });
     }
 
 //START DRAWING MAIN CONTAINERS
@@ -56,7 +82,7 @@ var yAxis = d3.svg.axis()
         .attr('width', svgWidth)
         .attr('height', svgHeight)
         .append("g")
-        .attr("transform", "translate(" + (margin.left + 300) + "," + margin.top + ")");
+        .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
 
     var pyramide = svg.append("g")
         .attr("class", "pyramide");
@@ -126,7 +152,7 @@ var yAxis = d3.svg.axis()
          .attr("opacity", "0")
          .attr("x", "-200")
          .attr("width", "200")
-         .attr("height", function () {return height - scaleY(deficite)-5;})
+         .attr("height", function () {return height - scaleY(deficite)-2;})
          .attr("rx", "7")
          .attr("ry", "7");
 //SIDE DESCRIPTION TEXTS
@@ -136,21 +162,30 @@ var yAxis = d3.svg.axis()
         .attr("opacity", 1)
         .style("text-anchor", "middle");
     deficiteGroup.append("text")
-        .text(function() { return "Дефіцит бюджету: " + deficite + " млрд.  —"})
+        .text(function() { return "Дефіцит бюджету: " + deficite + " млрд."})
         .attr("transform", function(d){ return "translate( -220," + (height - scaleY(deficite))/2 + ")"})
-        .attr("opacity", 1)
+        .attr("opacity", "0")
+        .attr("class", "side-label")
         .style("text-anchor", "end");
     income.append("text")
-        .text(function(d) { return d.description + ": " + d.total16 + " млрд.  —"})
+        .text(function(d) { return d.description + ": " + d.total16 + " млрд."})
         .attr("transform", function(d){ return "translate( -220," + ((height - scaleY(d.total16))/2+5) + ")"})
         .attr("opacity", "0")
+        .attr("class", "side-label")
         .style("text-anchor", "end");
     charges.append("text")
-        .text(function(d) { return "—  " + d.description + ": " + d.total16 + " млрд."})
+        .text(function(d) { return d.description + ": " + d.total16 + " млрд."})
         .attr("transform", function(d){ return "translate( 220," + ((height - scaleY(d.total16))/2+5) + ")"})
         .attr("opacity", 0)
+        .attr("class", "side-label")
         .style("text-anchor", "start");
-//ANIMATION OF APPEARENCE
+
+    pyramide.selectAll(".side-label")
+        .attr("dy", "0")
+        .call(wrap, 200);
+
+
+//ANIMATION OF APPEARANCE
     //AXE
     pyramide.selectAll('.axis').transition()
         .attr("opacity", "1")
@@ -163,9 +198,9 @@ var yAxis = d3.svg.axis()
         .delay(500);
     //ELEMENTS
     pyramide.selectAll(".data-item").transition()
-        .attr("height", function (d) {return height - scaleY(d.total16) - 5;})
-        .attr("rx", "7")
-        .attr("ry", "7")
+        .attr("height", function (d) {return height - scaleY(d.total16) - 2;})
+        .attr("rx", "5")
+        .attr("ry", "5")
         .duration(300)
         .delay(3000);
     pyramide.selectAll(".rest").transition()
