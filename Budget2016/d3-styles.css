@@ -1,0 +1,54 @@
+/*body {*/
+	/*background: grey;*/
+/*}*/
+/*.wrapper {*/
+	/*width: 80%;*/
+	/*margin: 0 auto;*/
+	/*border-radius: 5px;*/
+	/*background: white;*/
+	/*padding: 20px;*/
+	/*text-align: center;*/
+/*}*/
+body {
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	opacity: 0.7;
+}
+h1 {
+	text-align: center;
+}
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	display:none;
+}
+.deficite {
+	fill: #ccc;
+}
+.charges-item {
+	fill: #E53935
+}
+.income-item {
+	fill: #00695C
+}
+.pyramide text {
+	fill: #666;
+	font: 20px Arial, Tahoma, Verdana, sans-serif;
+	color: #383e47;
+	word-wrap: break-word;
+	width: 200px;
+	display: inline-block;
+}
+/*.elementbar:hover {*/
+	/*opacity: 1;*/
+/*}*/
+.item-group:hover .budget-item {
+	opacity: 0.7
+}
+
+.item-group:hover text {
+	opacity: 1;
+}
+.pyramide .bartitle {
+	font-size: 40px;
+}
