@@ -1,54 +1,199 @@
+	/* Font face rules */
+
+@font-face {
+	font-family: 'PT Sans Caption';
+	src: url('/fonts/ptc75f-webfont.eot');
+	src: url('/fonts/ptc75f-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/ptc75f-webfont.woff') format('woff'),
+	url('/fonts/ptc75f-webfont.ttf') format('truetype'),
+	url('/fonts/ptc75f-webfont.svg#PTSansBold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+svg.bank-lines{
+	position: relative;
+	top: 0px;
+	width: 1200px;
+}
+
+text {
+	fill: gray;
+	font: 10px sans-serif;
+}
+.node {
+	border: 3px solid white;
+	color: black;
+	font: 10px/12px sans-serif;
+	overflow: hidden;
+	position: absolute;
+	text-indent: 4px;
+}
+
+.nodet {
+	color: black;
+	font: 10px/12px sans-serif;
+	overflow: hidden;
+	position: absolute;
+}
+
 .axis path,
 .axis line {
 	fill: none;
 	stroke: #000;
-}
-.circlegroup circle {
-	position: absolute;
-	z-index: 5
+	shape-rendering: crispEdges;
 }
 
-.circlegroup:hover circle {
-	cursor:pointer;
-	z-index: 40;
-	fill: #0094FF !important;
+.axis--y path {
+	display: none;
 }
-.circlegroup .textlabel {
-	fill:#555 ;
-	position: absolute;
-	z-index: 5
-}
-.circlegroup:hover .textlabel {
 
-	cursor:pointer;
-	position: absolute;
-	z-index: 40;
-	fill:black;
+.groups {
+	fill: none;
+	stroke: #bebebe;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-opacity: .7;
+	stroke-width: 5px;
 }
-body {
-	background: grey;
-}
-.wrapper {
-	width: 80%;
-	margin: 0 auto;
-	border-radius: 5px;
-	background: white;
-	padding: 20px;
-	text-align: center;
-}
-.chart {
+
+path.background_line {stroke-opacity: 1; stroke-width: 10px; stroke: white;}
+
+.NA { stroke: #bebebe; }
+.family {stroke: #dc7889; }
+.regionals {stroke: #32699e; }
+.ukraine{stroke: #ffcc32; }
+.world{stroke: #de4406; }
+.russia{stroke: #777;}
+.state{stroke: #98bcde;}
+
+
+div.NA { color: #bebebe; font-weight: bold;}
+div.family {color: #dc7889; font-weight: bold;}
+div.regionals {color: #32699e; font-weight: bold;}
+div.ukraine {color: #ffcc32; font-weight: bold;}
+div.world {color: #de4406; font-weight: bold;}
+div.russia {color: #777;font-weight: bold;}
+div.state {color: #98bcde;font-weight: bold;}
+
+/*
+.NA { stroke: #777; }
+	.family {stroke: #536d7a; }
+	.regionals {stroke: #7da8af; }
+	.ukraine{stroke: #f9a962; }
+	.world{stroke: #e24c4b; }
+	.russia{stroke: #414b54;}
+.state{stroke: #893b27;}
+*/
+
+.unselected {stroke: #bebebe;}
+.selected { stroke-width: 8px; /*stroke: red;*/}
+
+.unselectedt { font-weight: normal; color: gray; }
+
+div.tooltip {
 	display: inline-block;
-	padding: 20px;
-	border-radius: 5px;
-	margin: 0 auto;
-	border: 1px solid #ccc;
-}
-.ch-button {
-	margin: 30px;
-	padding: 15px;
-	font-size: 20px;
+	z-index: 20;
+	position: relative;
+	text-align: center;
+	width: auto;
+	height: auto;
+	padding: 4px 8px 10px 4px;
+	font: 12px sans-serif;
+	background: #deebf7;
 	color: white;
-	background: crimson;
-	font-weight: 600;
-	border-radius: 5px;
+
+	background: black;
+	border: 5px solid black;
+	border-radius: 8px;
+
+	pointer-events: none;
+}
+
+div#color_legend{
+	position: relative;
+	top: 620px;
+	left: 40px;
+	z-index:21;
+	width: 200px;
+	opacity: 0.7;
+}
+
+#text_legend {
+	left: 350px;
+	top: 70px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: 870px;
+}
+
+#title {
+	font-family: PT Sans Caption;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+#description {
+	font-family: 'Open Sans';
+	margin-top: 15px;
+	font-size: 16px
+}
+
+
+.help_text {
+	font-size: 12px;
+	font-family: Arial;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+.rotate {
+
+	/* Safari */
+	-webkit-transform: rotate(-90deg);
+
+	/* Firefox */
+	-moz-transform: rotate(-90deg);
+
+	/* IE */
+	-ms-transform: rotate(-90deg);
+
+	/* Opera */
+	-o-transform: rotate(-90deg);
+
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+
+#v_axis{
+	color: #777;
+	font-size: 16px;
+	font-family: 'Open Sans';
+	left: 1100px;
+	position: relative;
+	top: -470px;
+	width: 300px;
+}
+#h_axis{
+	color: #777;
+	font-size: 16px;
+	left: 450px;
+	position: relative;
+	top: -210px;
+	width: 200px;
+	font-family: 'Open Sans';
+}
+.active-bank {
+	fill: white !important;
+	position: relative;
+	z-index: 5;
+}
+.scatterplot-wrapper {
+	display: inline-block;
+	float: left;
+}
+.scatterplot-title {
+	text-align: center;
 }
