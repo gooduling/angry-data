@@ -2,10 +2,17 @@ body {
 	font: 10px sans-serif;
 }
 
+#mapwrapper {
+	height: 412px;
+	width: 610px;
+	float: left;
+	position: relative;
+	margin-left: 100px
+}
 .axis path,
 .axis line {
 	fill: none;
-	stroke: #000;
+	stroke: #aaa;
 	shape-rendering: crispEdges;
 }
 
@@ -63,10 +70,29 @@ body {
 	left: 0;
 }
 
-select {
-	margin: 5px;
+select, button {
+	margin: 8px;
 	padding: 5px;
 	border-radius: 3px;
+	width: 200px;
+	display: block;
+	height: 40px;
+	font-size: 16px;
+	color: #555;
+	coursor: pointer;
+}
+select.setted {
+	background-color: #B7CECE;
+}
+button {
+	box-shadow: none;
+	background-color: #B7CECE;
+	opacity: 1;
+	border-style: none;
+	border: 1px solid #aaa;
+}
+button:hover {
+	opacity: 0.8;
 }
 .land {
 	fill: #B7CECE;
@@ -79,7 +105,30 @@ select {
 	/*fill: green;*/
 	opacity: 0.7
 }
-/*#container {*/
-	/*background: url('ua_map.png');*/
-	/*background-size: contain;*/
-/*}*/
+.region-chart g {
+	background-color: #fff;
+}
+.tooltip svg {
+	border: 2px solid #888;
+	background-color: #000;
+}
+
+.tooltip circle {
+	opacity: 0.4;
+}
+.outlineArc {
+	stroke: #aaa;
+}
+
+p {
+	font-size: 14px;
+	text-align: center;
+}
+.svgmap-filter-panel {
+	width: 200px;
+	margin: 10px;
+	float: left;
+}
+.test {
+	height: 500px;
+}

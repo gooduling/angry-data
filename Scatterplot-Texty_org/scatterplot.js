@@ -1,3 +1,13 @@
+//EXAMPLE of config object
+//var config1 = {
+//    activeBankName: d.name,
+//    target: "#scatterplot1",
+//    x_param: "credits_all",
+//    y_param: "deposits_all",
+//    x_title: "Credits",
+//    y_title: "Deposits",
+//    scat_title: "Deposits/Credits UAH"
+//};
 function scatterplot (data, config) {
     var data = data.filter(function(d) {   //Filter emty values
         return parseInt(d.values[config.x_param]) > 0 & parseInt(d.values[config.y_param]) > 0;
