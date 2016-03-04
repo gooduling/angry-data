@@ -85,7 +85,7 @@ var margin = {top: 70, right: 20, bottom: 20, left: 10},
         .offset([0, 0])
         .html(createTipContent);
 
-d3.csv("huge-simple.csv", function(er, csv_data){//vox_united.csv huge-simple.csv
+d3.csv("huge-united.csv", function(er, csv_data){//vox_united.csv huge-simple.csv
     incomeData = csv_data.filter(function(i){return i.location != "outside_ukraine" && i.location != "not_defined"});
     update(incomeData);
     filterOptions = collectUniqValues(incomeData);
