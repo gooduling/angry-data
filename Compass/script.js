@@ -10,7 +10,7 @@ var margin = {top: 70, right: 20, bottom: 20, left: 10},
     nestedData = {},
     filterOptions = {},
     filterStates = {},
-    filterRows = ["sex", "birth", "family", "education", "job", "rich", "religion"], // "voting", "politics"],
+    filterRows = ["sex", "birth", "family", "education", "job", "rich", "religion", "voting", "politics"],
     quadrantColors = {
         //NE: "red",
         //SE: "green",
@@ -152,7 +152,6 @@ function resetFilters() {
 }
 function createTipContent(id) {
     var thisRegionData = _.find(nestedData, function(el){ return el.key === ua_map_id_to_labels[id]; });
-    console.log(thisRegionData);
     var regionTitle = ua_map_localization_UA[ua_map_id_to_labels[id]];
     var html = "<p>" + regionTitle + "</p>" +
         "<p> Всього голосів: " + thisRegionData.values.voices + "</p>"
@@ -173,7 +172,7 @@ function collectUniqValues(arr) {
     arr.forEach(function(i) {
         for (var key in i) {
             //skip if key is not in setted list of filters
-            if (!(filterRows.indexOf(key)+1)|| i[key] === "n/a") continue;
+            if (!(filterRows.indexOf(key)+1)|| i[key] === "n/a" || !i[key]) continue;
             if (!result[key]) result[key] = {};
             result[key][i[key]] = true;
         }
@@ -181,7 +180,7 @@ function collectUniqValues(arr) {
     for (var key in result) {
         result[key] = d3.keys(result[key])
     }
-    console.log(result);
+    //console.log( JSON.stringify(result, null, '\t'));
     return result;
 }
 
@@ -270,8 +269,6 @@ function drawSegments(data) {
     var findGroupCoordinates = function(d) {
         var rootG = document.getElementById('g'+ua_map_labels_to_id[d.key]),
             parentRec = rootG ? rootG.getBoundingClientRect() : {};
-        console.log(parentRec.left - mapPosition.left);
-        console.log(parentRec.top - mapPosition.top);
         return "translate(" + (parentRec.left - mapPosition.left + parentRec.width/2) + "," + (parentRec.top - mapPosition.top + 50) + ")"
     };
     //if (!parentRec.top) console.log(location);
@@ -448,8 +445,3 @@ function scatterplot (data, config) {
         .style("text-anchor", "end")
         .text(config.y_title);
 }
-
-
-
-
-

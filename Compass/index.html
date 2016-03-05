@@ -34,9 +34,14 @@
 			<select onchange="handleChoice(this.value, 'rich')" id="rich">
 				<option value="">Дохід (всі)</option>
 			</select>
-			<select onchange="handleChoice(this.value, 'religion')" id="religion">
-				<option value="">Релігія (всі)</option>
+			<select onchange="handleChoice(this.value, 'politics')" id="politics">
+				<option value="">Зацікавленість політикою(всі)</option>
 			</select>
+			<select onchange="handleChoice(this.value, 'voting')" id="voting">
+				<option value="">Голосування за партію (всі)</option>
+			</select><select onchange="handleChoice(this.value, 'religion')" id="religion">
+			<option value="">Релігія (всі)</option>
+		</select>
 		</form>
 		<button onclick="resetFilters()">Скинути фільтри</button>
 	</div>
