@@ -51,6 +51,13 @@
 				<option value="u">Українська</option>
 				<option value="r">Російська</option>
 			</select>
+			<select onchange="handleChoice(this.value, 'quadrant')" id="quadrant">
+				<option value="">Прихильність (всі)</option>
+				<option value="SE">Вилучити SE</option>
+				<option value="SW">Вилучити SW</option>
+				<option value="NE">Вилучити NE</option>
+				<option value="NW">Вилучити NW</option>
+			</select>
 		</form>
 		<button onclick="resetFilters()">Скинути фільтри</button>
 	</div>

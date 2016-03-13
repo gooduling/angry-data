@@ -20,7 +20,7 @@ var margin = {top: 70, right: 20, bottom: 20, left: 10},
     filterOptions = {},
     filterStates = {},
     lang = 0,// default language of UI:  0 - UA, 1 - RU, 2 - EN
-    filterRows = ["sex", "birth", "family", "education", "job", "rich", "religion", "voting", "politics", "lang"],
+    filterRows = ["sex", "birth", "family", "education", "job", "rich", "religion", "voting", "politics", "lang", "quadrant"],
     quadrantColors = {
         //NE: "red",
         //SE: "green",
@@ -362,7 +362,7 @@ d3.csv("global_dataset.csv", function(er, csv_data){//vox_united.csv huge-simple
     filterOptions = collectUniqValues(incomeData);
     //add options with uniq values in filter selects
     for (var key in filterOptions) {
-        if (!(filterRows.indexOf(key)+1) || key === 'birth' || key === 'lang') { continue}
+        if (!(filterRows.indexOf(key)+1) || key === 'birth' || key === 'lang' || key === 'quadrant') { continue}
         filterOptions[key].forEach(function(item){
             var text = key === 'rich' ? localization_map[key][item]:localization_map[key][item][lang];
             d3.selectAll("#svgmap-form-wrapper #" + key)
@@ -379,6 +379,9 @@ function update (csv_data) {
         filterRows.forEach(function(key) {
             if (d[key] === 'n/a') { // if no values, skip
                 filterResult = false;
+                return;
+            }
+            if (key === 'quadrant') {  // skip
                 return;
             }
             if (key === 'birth') {  // if age is in filter range
@@ -436,8 +439,12 @@ function update (csv_data) {
                 ++regionResult[defineQuadrant(i.x, i.y)].size;
             });
             //Transform absolute quantity in percents
+            var calculatedLength = d.length - (filterStates.quadrant ?  regionResult[filterStates.quadrant].size : 0);
+            console.log(calculatedLength);
             for ( var qd in regionResult) {
-                regionResult[qd].size = regionResult[qd].size/ d.length;
+                // if setted, exclude quadrant from the range
+                regionResult[qd].originalSize  = regionResult[qd].size;
+                regionResult[qd].size = qd === filterStates.quadrant ? 0 : regionResult[qd].size/calculatedLength;
             }
             return {
                 originalData: d,
@@ -470,7 +477,7 @@ function update (csv_data) {
 }
 
 function drawSegments(data, mapPosition) {
-    var findGroupCoordinates = function(d, y) {
+    var findGroupCoordinates = function(d) {
         var rootG = document.getElementById('g'+d.key),
             parentRec = rootG ? rootG.getBoundingClientRect() : {};
         return "translate(" + (parentRec.left - mapPosition.left + parentRec.width/2) + "," + (parentRec.top - mapPosition.top + 50) + ")"
@@ -486,6 +493,7 @@ function drawSegments(data, mapPosition) {
         .attr("class", function(d) { return localization_map.location[d.key][2] + " quadrants-ring"})
         .attr("transform", findGroupCoordinates)
         .on("mouseover", function(d) {
+            d3.select(this).attr("transform", function(d) { return findGroupCoordinates(d) + " scale(1.7, 1.7)"});
             var id = d.key;
             //tip.show(id);
             d3.select(this)
@@ -496,6 +504,7 @@ function drawSegments(data, mapPosition) {
             simple_tooltip(id);
         })
         .on("mouseout", function(d) {
+            d3.select(this).attr("transform", function(d) { return findGroupCoordinates(d)});
             var id = d.key;
            // tip.hide(id);
             d3.select(this)

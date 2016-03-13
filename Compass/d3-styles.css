@@ -114,9 +114,7 @@ button:hover {
 .number-in-ring {
 	cursor: default;
 }
-/*.quadrants-ring:hover {*/
-	/*transform: scale(1.2, 1.2);*/
-/*}*/
+
 .tooltip svg {
 	border: 2px solid #888;
 	background-color: #000;
@@ -133,6 +131,10 @@ button:hover {
 	fill: #f2cc84;
 	fill-opacity: 1 !important;
 	stroke: #ff5b51;
+}
+.quadrants-ring:hover .outlineArc {
+	fill: #f29343;
+	fill-opacity: 1 !important;
 }
 
 p {
