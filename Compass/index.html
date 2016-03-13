@@ -6,9 +6,12 @@
 </head>
 
 <body>
+<div class="test">
+	<img src="Political_compass.png" width="400px">
+</div>
 <div class="wrapper">
-	<div class="test"></div>
     <h2>Compass</h2>
+	<p class="total-voices"></p>
 	<div class="svgmap-filter-panel">
 		<form id = "svgmap-form-wrapper">
 			<select onchange="handleChoice(this.value,'birth')" id="birth">
@@ -39,11 +42,21 @@
 			</select>
 			<select onchange="handleChoice(this.value, 'voting')" id="voting">
 				<option value="">Голосування за партію (всі)</option>
-			</select><select onchange="handleChoice(this.value, 'religion')" id="religion">
-			<option value="">Релігія (всі)</option>
-		</select>
+			</select>
+			<select onchange="handleChoice(this.value, 'religion')" id="religion">
+				<option value="">Релігія (всі)</option>
+			</select>
+			<select onchange="handleChoice(this.value, 'lang')" id="lang">
+				<option value="">Мова користувача (всі)</option>
+				<option value="u">Українська</option>
+				<option value="r">Російська</option>
+			</select>
 		</form>
 		<button onclick="resetFilters()">Скинути фільтри</button>
+	</div>
+	<div class="tooltip" id="customtooltip">
+		<div id="scatterplot1" class="scatterplot-wrapper"></div>
+		<div class="tooltip-text"></div>
 	</div>
 	<div id="mapwrapper">
 		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id = "ua_map" width="610px" height="410px">
@@ -164,13 +177,7 @@
 				</g>
 			</g>
 		</svg>
-		<div class="tooltip" id="tt1" style="position: absolute; opacity: 0">
-			<div id="scatterplot1" class="scatterplot-wrapper"></div>
-			<div class="tooltip-text"></div>
-		</div>
 	</div>
-
-	<div class="test"></div>
 </div>
 
 <script src = "../d3.min.js"></script>

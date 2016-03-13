@@ -1,7 +1,9 @@
 body {
 	font: 10px sans-serif;
 }
-
+.wrapper {
+	position: relative
+}
 #mapwrapper {
 	height: 412px;
 	width: 610px;
@@ -95,19 +97,26 @@ button:hover {
 	opacity: 0.8;
 }
 .land {
-	fill: #B7CECE;
+	fill: #4f9d9b;
 	fill-opacity: 1;
 	stroke:white;
 	stroke-opacity: 1;
 	stroke-width:0.5;
 }
 .land:hover {
-	/*fill: green;*/
-	opacity: 0.7
+	fill: #f2cc84;
+	fill-opacity: 1 !important;
+	stroke: #ff5b51;
 }
 .region-chart g {
 	background-color: #fff;
 }
+.number-in-ring {
+	cursor: default;
+}
+/*.quadrants-ring:hover {*/
+	/*transform: scale(1.2, 1.2);*/
+/*}*/
 .tooltip svg {
 	border: 2px solid #888;
 	background-color: #000;
@@ -117,7 +126,13 @@ button:hover {
 	opacity: 0.4;
 }
 .outlineArc {
-	stroke: #aaa;
+	fill: #ffffff;
+	opacity: 0.4;
+}
+.outlineArc:hover {
+	fill: #f2cc84;
+	fill-opacity: 1 !important;
+	stroke: #ff5b51;
 }
 
 p {
@@ -129,6 +144,21 @@ p {
 	margin: 10px;
 	float: left;
 }
+#customtooltip {
+	position: absolute;
+	left: 240px;
+	top: 310px;
+	opacity: 0
+}
 .test {
 	height: 500px;
+}
+.legendgroup {
+	display: inline-block;
+	margin-left: 20px;
+}
+.total-voices {
+	position: absolute;
+	left: 300px;
+	top: -30px;
 }
