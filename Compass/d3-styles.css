@@ -1,15 +1,58 @@
 body {
 	font: 10px sans-serif;
 }
-.wrapper {
-	position: relative
+.compass-svg-wrapper {
+	position: relative;
+	padding: 10px;
+	border: 1px solid black;
+	height: 550px
 }
 #mapwrapper {
 	height: 412px;
 	width: 610px;
+	left: 230px;
+	top: 20px;
+	position: absolute;
+
+}
+#svgmap-filter-panel {
+	width: 160px;
+	margin: 10px;
 	float: left;
-	position: relative;
-	margin-left: 100px
+}
+#customtooltip {
+	position: absolute;
+	left: 890px;
+	top: 240px;
+	/*opacity: 0*/
+
+}
+#ua-chart {
+	position: absolute;
+	left: 890px;
+	top: 10px;
+	width: 250px;
+}
+
+.total-voices {
+	/*position: absolute;*/
+	/*margin: 0 auto;*/
+	/*top: 110px;*/
+}
+
+.compass-svg-wrapper h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	text-align: center;
+}
+.test {
+	height: 500px;
+}
+.legendgroup {
+	margin-left: 20px;
 }
 .axis path,
 .axis line {
@@ -73,13 +116,13 @@ body {
 }
 
 select, button {
-	margin: 8px;
-	padding: 5px;
+	margin: 6px;
+	padding: 3px;
 	border-radius: 3px;
-	width: 200px;
+	width: 150px;
 	display: block;
-	height: 40px;
-	font-size: 16px;
+	height: 30px;
+	font-size: 14px;
 	color: #555;
 	coursor: pointer;
 }
@@ -136,31 +179,6 @@ button:hover {
 	fill: #f29343;
 	fill-opacity: 1 !important;
 }
-
-p {
-	font-size: 14px;
-	text-align: center;
-}
-.svgmap-filter-panel {
-	width: 200px;
-	margin: 10px;
-	float: left;
-}
-#customtooltip {
-	position: absolute;
-	left: 240px;
-	top: 310px;
-	opacity: 0
-}
-.test {
-	height: 500px;
-}
-.legendgroup {
-	display: inline-block;
-	margin-left: 20px;
-}
-.total-voices {
-	position: absolute;
-	left: 300px;
-	top: -30px;
+.scatterplot-percents {
+	stroke: #fff;
 }

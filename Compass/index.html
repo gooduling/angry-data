@@ -11,10 +11,9 @@
 	<p>Політичний компас є двовимірною політичною моделлю яка визначає політичну філософію людини. Модель розраховує місце на координатній площині на основі 40 відповідей на питання, які належать до двох вимірів: економічний (лівий – правий) та соціальний (авторитарний – ліберальний).
 	Модель політичного компасу будується на теорії, що політична ідеологія можу бути визначена в двовимірному просторі. Економічна вісь (лівий – правий) визначає яким чином повинна функціонувати економічна система: «лівий» визначається як регулювання економічної системи колективним економічним суб’єктом (це може бути держава або мережа територіальних громад), в той час як «правий» – це функціонування економічної системи на основі конкуренції приватних економічних агентів. Соціальна вісь (авторитаризм – лібералізм) визначає рівень особистої свободи людини: «лібералізм» визначається як переконання, що особиста свобода людини повинна бути максимальною, «авторитаризм» – необхідність дотримуватися наказів вищого органу влади і традицій.</p>
 </div>
-<div class="wrapper">
-    <h2>Compass</h2>
-	<p class="total-voices"></p>
-	<div class="svgmap-filter-panel">
+<h2>Compass</h2>
+<div class="compass-svg-wrapper">
+	<div id="svgmap-filter-panel">
 		<form id = "svgmap-form-wrapper">
 			<select onchange="handleChoice(this.value,'birth')" id="birth">
 				<option value="">Вік (всі)</option>
@@ -53,19 +52,20 @@
 				<option value="u">Українська</option>
 				<option value="r">Російська</option>
 			</select>
-			<select onchange="handleChoice(this.value, 'quadrant')" id="quadrant">
-				<option value="">Прихильність (всі)</option>
-				<option value="SE">Вилучити SE</option>
-				<option value="SW">Вилучити SW</option>
-				<option value="NE">Вилучити NE</option>
-				<option value="NW">Вилучити NW</option>
-			</select>
+			<!--<select onchange="handleChoice(this.value, 'quadrant')" id="quadrant">-->
+				<!--<option value="">Прихильність (всі)</option>-->
+				<!--<option value="SE">Вилучити SE</option>-->
+				<!--<option value="SW">Вилучити SW</option>-->
+				<!--<option value="NE">Вилучити NE</option>-->
+				<!--<option value="NW">Вилучити NW</option>-->
+			<!--</select>-->
 		</form>
 		<button onclick="resetFilters()">Скинути фільтри</button>
 	</div>
-	<div class="tooltip" id="customtooltip">
+	<div id="customtooltip" class="tooltip">
+		<h2>Розподіл голосів по квадрантах</h2>
 		<div id="scatterplot1" class="scatterplot-wrapper"></div>
-		<div class="tooltip-text"></div>
+		<div id="scatterplot2" class="scatterplot-wrapper"></div>
 	</div>
 	<div id="mapwrapper">
 		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id = "ua_map" width="610px" height="410px">
@@ -187,6 +187,12 @@
 			</g>
 		</svg>
 	</div>
+	<div id="ua-chart">
+		<h2>Кількісна діаграма</h2>
+		<svg class="total-chart"></svg>
+		<p class="total-voices"></p>
+	</div>
+
 </div>
 
 <script src = "../d3.min.js"></script>
