@@ -737,7 +737,7 @@ function scatterplot (data, config, allUkraine) {
         spHeight = 250,
         width = spWidth - spMargin.left - spMargin.right,
         height = spHeight - spMargin.top - spMargin.bottom,
-        regionTipLabel = !allUkraine ? localization_map.location[config.location][lang] + ': ': 'Вся Україна.',
+        regionTipLabel = !allUkraine ? localization_map.location[config.location][lang] + ': ': 'Вся Україна:',
         percents = allUkraine ? allUApercents : data.percents,
         domain = {
             x: [-1, 0, 1],
