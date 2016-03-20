@@ -33,6 +33,11 @@ body {
 	top: 10px;
 	width: 250px;
 }
+#color-legend {
+	top: 450px;
+	left: 300px;
+	position: absolute;
+}
 
 .total-voices {
 	/*position: absolute;*/
@@ -43,7 +48,42 @@ body {
 .compass-svg-wrapper h2 {
 	text-align: center;
 }
-
+.color-wrapper {
+	width: 100px;
+}
+.colorblock {
+	float: left;
+	width: 40px;
+	height: 40px;
+	box-shadow: #555555;
+	margin-bottom: 4px;
+	position: relative;
+}
+.colorblock:nth-child(odd) {
+	margin-right: 4px;
+}
+.colorblock span {
+	margin-top: 10px;
+	position: absolute;
+	left: 50px;
+}
+.colorblock:nth-child(odd) span {
+	right: 50px;
+	left: auto;
+	text-align: right;
+}
+.colorblock.ne {
+	background-color: #2D728F ;
+}
+.colorblock.nw {
+	background-color: #C42021 ;
+}
+.colorblock.se {
+	background-color: #70AE6E ;
+}
+.colorblock.sw {
+	background-color: #F49E4C ;
+}
 p {
 	font-size: 14px;
 	text-align: center;
@@ -181,4 +221,9 @@ button:hover {
 }
 .scatterplot-percents {
 	stroke: #fff;
+}
+.arrow-img {
+	position: absolute;
+	top: 30px;
+	left: 125px
 }

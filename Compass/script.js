@@ -614,6 +614,23 @@ function drawUAchart(csv_data, uaPercentsArr) {
         .attr("stroke", "gray")
         .attr("class", "outlineArc-all")
         .attr("d", outlineArc);
+
+    allUasvg.append("text")
+        .attr("stoke", "gray" )
+        .attr("transform", "translate(-40, -25)")
+        .text(d3.round(allUApercents.NW * 100) + '%');
+    allUasvg.append("text")
+        .attr("stoke", "gray" )
+        .attr("transform", "translate( 20, -25)")
+        .text(d3.round(allUApercents.NE * 100) + '%');
+    allUasvg.append("text")
+        .attr("stoke", "gray" )
+        .attr("transform", "translate(20, 35)")
+        .text(d3.round(allUApercents.SE * 100) + '%');
+    allUasvg.append("text")
+        .attr("stoke", "gray" )
+        .attr("transform", "translate(-40, 35)")
+        .text(d3.round(allUApercents.SW * 100) + '%');
 }
 function drawSegments(data, mapPosition) {
     radius = 35;
