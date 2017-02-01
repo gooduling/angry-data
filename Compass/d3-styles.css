@@ -7,8 +7,6 @@
 }
 .compass-svg-wrapper {
 	position: relative;
-	padding: 10px;
-	border: 1px solid black;
 	height: 550px
 }
 #mapwrapper {
