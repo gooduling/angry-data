@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Nixie+One");
-    body {
+    body, select {
         font-family: 'Nixie One', cursive;
         font-family: 'Inconsolata', monospace;
 }
