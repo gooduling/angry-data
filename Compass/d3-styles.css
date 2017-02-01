@@ -1,5 +1,7 @@
-body {
-	font: 10px sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Inconsolata|Nixie+One");
+    body {
+        font-family: 'Nixie One', cursive;
+        font-family: 'Inconsolata', monospace;
 }
 .compass-svg-wrapper {
 	position: relative;
