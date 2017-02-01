@@ -92,7 +92,8 @@ p {
 	text-align: center;
 }
 .test {
-	height: 500px;
+	margin: 0 auto;
+	max-height: 900px;
 }
 .legendgroup {
 	margin-left: 20px;
