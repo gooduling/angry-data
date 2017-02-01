@@ -4,6 +4,7 @@
 }
 .description {
    font-family: 'Inconsolata', monospace;
+	text-align: justify;
 }
 .compass-svg-wrapper {
 	position: relative;
